@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beelinx | Log in</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/glass.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+
+<main class="auth-page">
+
+    <a href="index.html" class="auth-logo">
+        <img src="../beelinx_logo.png" alt="Beelinx Logo">
+    </a>
+
+    <section class="auth-card">
+
+        <h1 id="auth-title">Welcome back</h1>
+        <p id="auth-subtitle" class="auth-subtitle">Log in to your Beelinx account</p>
+
+        <div class="auth-tabs" id="auth-tabs">
+            <button type="button" class="auth-tab active" data-view="login">Log in</button>
+            <button type="button" class="auth-tab" data-view="signup">Sign up</button>
+        </div>
+
+        <p id="auth-message" class="auth-message" role="alert" hidden></p>
+
+        <div id="social-block">
+            <button type="button" id="google-btn" class="google-btn">
+                <i class="fab fa-google"></i> Continue with Google
+            </button>
+            <div class="auth-divider"><span>or</span></div>
+        </div>
+
+        <!-- LOG IN -->
+        <form id="login-form" class="auth-form" data-view="login">
+            <label for="login-email">Email</label>
+            <input id="login-email" type="email" autocomplete="email" required>
+
+            <label for="login-password">Password</label>
+            <div class="password-field">
+                <input id="login-password" type="password" autocomplete="current-password" required>
+                <button type="button" class="toggle-password" aria-label="Show password">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+
+            <button type="button" class="link-btn" data-view="forgot">Forgot password?</button>
+            <button type="submit" class="auth-submit">Log in</button>
+        </form>
+
+        <!-- SIGN UP -->
+        <form id="signup-form" class="auth-form" data-view="signup" hidden>
+            <label for="signup-email">Email</label>
+            <input id="signup-email" type="email" autocomplete="email" required>
+
+            <label for="signup-password">Password</label>
+            <div class="password-field">
+                <input id="signup-password" type="password" autocomplete="new-password" minlength="8" required>
+                <button type="button" class="toggle-password" aria-label="Show password">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+            <small class="hint">At least 8 characters.</small>
+
+            <label for="signup-confirm">Confirm password</label>
+            <input id="signup-confirm" type="password" autocomplete="new-password" required>
+
+            <button type="submit" class="auth-submit">Create account</button>
+        </form>
+
+        <!-- FORGOT PASSWORD -->
+        <form id="forgot-form" class="auth-form" data-view="forgot" hidden>
+            <label for="forgot-email">Email</label>
+            <input id="forgot-email" type="email" autocomplete="email" required>
+
+            <button type="submit" class="auth-submit">Send reset link</button>
+            <button type="button" class="link-btn" data-view="login">Back to log in</button>
+        </form>
+
+        <!-- NEW PASSWORD (after clicking the reset email) -->
+        <form id="update-form" class="auth-form" data-view="update" hidden>
+            <label for="update-password">New password</label>
+            <input id="update-password" type="password" autocomplete="new-password" minlength="8" required>
+
+            <button type="submit" class="auth-submit">Save new password</button>
+        </form>
+
+    </section>
+
+    <a href="index.html" class="auth-back">&larr; Back to Beelinx</a>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../js/login.js"></script>
+
+</body>
+
+</html>

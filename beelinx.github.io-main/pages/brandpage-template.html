@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" 
+    content="fashion brands, clothing brands, Nigerian fashion, 
+    African fashion, streetwear brands, fashion discovery, clothing, 
+    Beelinx">
+
+    <meta name="description" 
+    content="Discover fashion brands and explore their products, 
+    styles, and collections on Beelinx. Find new brands and see 
+    where to shop their products.">
+
+    <title id="page-title">
+        Beelinx | Discover Brands
+    </title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="../css/styles.css">
+          <link rel="stylesheet" href="../css/dark-premium.css">
+<link rel="stylesheet" href="../css/premium-motion.css">
+<link rel="stylesheet" href="../css/polish.css">
+
+<link rel="stylesheet" href="../css/sidebar-auth.css">
+<link rel="stylesheet" href="../css/glass.css">
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <!-- Hamburger -->
+
+            <div class="hamburger"
+                 onclick="toggleMenu()">
+
+                <i class="fas fa-bars"></i>
+
+            </div>
+
+
+            <!-- Logo -->
+
+            <div class="nav-center">
+
+                <a href="index.html"
+                   class="logo-link">
+
+                    <img src="../beelinx_logo.png"
+                         alt="Beelinx Logo"
+                         class="logo-img">
+
+                </a>
+
+            </div>
+
+
+            <!-- Search -->
+
+            <div class="search-container">
+
+                <input type="text"
+                       class="search-input"
+                       id="searchInput"
+                       placeholder="Search products and brands"
+                       onkeyup="searchFunction()">
+
+                <label for="searchInput">
+
+                    <i class="fas fa-search search-btn"></i>
+
+                </label>
+
+            </div>
+
+        </nav>
+
+
+        <!-- Side Menu -->
+
+        <div id="sideMenu"
+             class="side-menu">
+
+            <div class="close-btn"
+                 onclick="closeMenu()">
+
+                <i class="fas fa-times"></i>
+
+            </div>
+
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="catalogue.html">
+                Catalogue
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         BRAND INFORMATION
+    ========================================= -->
+
+    <main>
+
+
+        <img id="brand-logo"
+             class="brand-product-logo"
+             src=""
+             alt="Brand Logo">
+
+
+        <h1 id="brand-name"
+            class="brand-name-h">
+        </h1>
+
+
+
+        <!-- =========================================
+             PRODUCTS
+        ========================================= -->
+
+        <div id="products-container"
+             class="products-container">
+
+            <!-- Products will be generated automatically -->
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+
+        <section class="footer-section">
+
+
+            <p class="brand-web-link">
+
+                <a id="brand-website"
+                   class="website-link"
+                   href=""
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    Official Website
+
+                </a>
+
+            </p>
+
+
+            <p id="brand-slogan"
+               class="footer-text">
+
+            </p>
+
+
+
+            <!-- Social Media -->
+
+            <div id="brand-socials"
+                 class="social-icons">
+
+                <!-- Social icons generated automatically -->
+
+            </div>
+
+
+
+            <p class="copyrights">
+
+                © 2026 Beelinx — Fashion Worth Discovering
+
+            </p>
+
+
+        </section>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+    <script src="../js/main.js"></script>
+
+    <script src="../js/api.js"></script>
+
+    <script src="../js/brand-page.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../js/sidebar-auth.js"></script>
+</body>
+
+</html>
+

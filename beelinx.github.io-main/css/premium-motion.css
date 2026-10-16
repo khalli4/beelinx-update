@@ -1,0 +1,128 @@
+/* =========================================================
+   BEELINX PREMIUM MOTION
+   Load AFTER dark-premium.css
+========================================================= */
+
+:root { --ease: cubic-bezier(0.22, 1, 0.36, 1); }
+
+a, button { touch-action: manipulation; }
+
+/* ---------- FIXES ---------- */
+
+#sideMenu .side-auth-google { font-size: 0.82rem; white-space: nowrap; }
+
+.side-auth input:-webkit-autofill,
+.auth-form input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #141414 inset;
+    -webkit-text-fill-color: #fff;
+    caret-color: #fff;
+}
+
+.featured-track { padding-top: 10px; padding-bottom: 16px; }
+
+.featured-slide .clothe-image {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- ENTRANCES ---------- */
+
+@keyframes bx-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes bx-slide-in {
+    from { opacity: 0; transform: translateX(-18px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.products-container .products { animation: bx-rise 0.7s var(--ease) backwards; }
+.products-container .products:nth-child(6n + 2) { animation-delay: 0.05s; }
+.products-container .products:nth-child(6n + 3) { animation-delay: 0.1s; }
+.products-container .products:nth-child(6n + 4) { animation-delay: 0.15s; }
+.products-container .products:nth-child(6n + 5) { animation-delay: 0.2s; }
+.products-container .products:nth-child(6n + 6) { animation-delay: 0.25s; }
+
+/* ---------- SIDE MENU ---------- */
+
+.side-menu.active > a { animation: bx-slide-in 0.5s var(--ease) backwards; }
+.side-menu.active > a:nth-of-type(1) { animation-delay: 0.08s; }
+.side-menu.active > a:nth-of-type(2) { animation-delay: 0.14s; }
+.side-menu.active > a:nth-of-type(3) { animation-delay: 0.2s; }
+.side-menu.active .side-auth { animation: bx-slide-in 0.6s var(--ease) 0.28s backwards; }
+
+/* ---------- TOUCH PRESS FEEDBACK ---------- */
+
+.products,
+.brand-section { transition: transform 0.25s var(--ease); }
+.products:active,
+.brand-section:active { transform: scale(0.97); }
+
+button:active,
+.open-catalogue:active { transform: scale(0.97); }
+
+/* ---------- HOVER (mouse devices only) ---------- */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .logo-img { transition: transform 0.4s var(--ease), opacity 0.2s; }
+    .logo-img:hover { transform: scale(1.06); opacity: 1; }
+
+    .hamburger { transition: transform 0.3s var(--ease), opacity 0.2s; }
+    .hamburger:hover { transform: scale(1.15); opacity: 1; }
+
+    .search-btn { transition: transform 0.3s var(--ease), opacity 0.2s; }
+    .search-btn:hover { transform: scale(1.2) rotate(-8deg); opacity: 1; }
+
+    /* hero cards */
+    .featured-slide {
+        transition: transform 0.5s var(--ease), border-color 0.4s ease, box-shadow 0.5s ease;
+    }
+    .featured-slide:hover {
+        transform: translateY(-6px);
+        border-color: #4a4a4a;
+        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.75), 0 0 60px rgba(255, 255, 255, 0.05);
+    }
+    .featured-slide .clothe-image { transition: transform 0.6s var(--ease); }
+    .featured-slide:hover .clothe-image { transform: scale(1.05); }
+
+    /* brand ads */
+    .brand-ad-slide img { transition: transform 1.2s var(--ease); }
+    .brand-ad-slide:hover img { transform: scale(1.04); }
+
+    /* product cards */
+    .products > a:first-child {
+        display: block;
+        overflow: hidden;
+        border-radius: 14px;
+    }
+    .products-container .products img { transition: transform 0.6s var(--ease), box-shadow 0.4s ease; }
+    .products:hover { transform: translateY(-6px); }
+    .products:hover .clothe-image,
+    .products:hover img { transform: scale(1.06); }
+
+    /* animated underline on brand names */
+    .brand-page-link {
+        text-decoration: none;
+        background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+        transition: background-size 0.35s var(--ease), color 0.2s ease;
+    }
+    .brand-page-link:hover { background-size: 100% 1px; text-decoration: none; }
+
+    /* brands page */
+    .brand-section:hover { transform: translateY(-6px); }
+    .brand-logo { transition: transform 0.5s var(--ease), box-shadow 0.4s ease; }
+    .brand-section:hover .brand-logo {
+        transform: scale(1.05);
+        box-shadow: 0 14px 34px rgba(255, 255, 255, 0.1);
+    }
+
+    /* footer */
+    .social-icons a { transition: transform 0.25s var(--ease), color 0.2s ease; }
+    .social-icons a:hover { transform: translateY(-4px) scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}

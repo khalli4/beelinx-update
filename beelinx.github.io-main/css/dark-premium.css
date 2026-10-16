@@ -1,0 +1,243 @@
+/* =========================================================
+   BEELINX DARK PREMIUM THEME
+   Must be the LAST stylesheet in <head>
+========================================================= */
+
+:root {
+    --bg: #000;
+    --bg-soft: #0d0d0d;
+    --bg-card: #111;
+    --line: #262626;
+    --text: #f2f2f2;
+    --muted: #9a9a9a;
+    --serif: 'Playfair Display', Georgia, "Times New Roman", serif;
+}
+
+/* ---------- BASE (also removes the white gap) ---------- */
+
+html {
+    background: var(--bg);
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+}
+
+::selection { background: #fff; color: #000; }
+
+* { scrollbar-color: #333 #000; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 10px; }
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* ---------- HEADINGS ---------- */
+
+h1 {
+    color: var(--text);
+    font-family: var(--serif);
+    letter-spacing: 0.08em;
+}
+.featured-slide .featured-product-name,
+.brand-ad-title,
+.about-beelinx h3 { font-family: var(--serif); }
+
+.featured-slide .collection-name { letter-spacing: 0.1em; }
+
+/* ---------- HERO CAROUSEL ---------- */
+
+.featured-section-container,
+.featured-product { background: transparent; }
+
+.featured-slide,
+.featured-slide.active {
+    background: linear-gradient(160deg, #161616 0%, #000 70%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+.featured-slide .featured-product-link {
+    transition: letter-spacing 0.25s ease, opacity 0.25s ease;
+}
+.featured-slide .featured-product-link:hover {
+    text-decoration: underline;
+    letter-spacing: 0.08em;
+}
+
+/* ---------- BRAND ADS ---------- */
+
+.brand-ad-content {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+}
+.brand-ad-title { letter-spacing: 0.04em; }
+
+/* ---------- PRODUCT GRID ---------- */
+
+.clothe-text { color: var(--text); }
+.price { color: var(--muted); letter-spacing: 0.04em; }
+.brand-page-link { color: var(--muted); transition: color 0.2s ease; }
+.brand-page-link:hover { color: #fff; }
+
+.products { transition: transform 0.25s ease; }
+
+.products-container .products img,
+.clothe-image {
+    background: var(--bg-card);
+    border-radius: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.products:hover .clothe-image,
+.products:hover img {
+    box-shadow: 0 14px 34px rgba(255, 255, 255, 0.08);
+}
+.clothe-image:hover { opacity: 1; }
+
+/* ---------- BRANDS / CATALOGUE ---------- */
+
+.brand-logo,
+.brand-product-logo { background: #fff; }
+
+/* ---------- ABOUT / FOOTER / LINKS ---------- */
+
+.motto { color: #fff; opacity: 0.55; }
+
+.footer-text,
+.social-icons,
+.social-icons a { color: #bdbdbd; }
+.social-icons a:hover { color: #fff; }
+
+.website-link,
+.email-link,
+.about-beelinx a { color: #fff; }
+.email-link:hover { color: #aaa; }
+
+.about-beelinx p { color: #bdbdbd; border-bottom-color: var(--line); }
+
+.copyrights,
+.copyrights-gen { color: var(--muted); }
+.copyrights-gen-home { background: #000; border-top: 1px solid #1c1c1c; }
+
+.open-catalogue {
+    background: #fff;
+    color: #000;
+    border: 1px solid #fff;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+.open-catalogue:hover { background: #000; color: #fff; }
+
+/* ---------- LOADING PLACEHOLDERS ---------- */
+
+@keyframes bx-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes bx-pulse {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 0.9; }
+}
+
+.featured-track:not(:has(.featured-slide)),
+.brand-ad-slider:not(:has(.brand-ad-slide)),
+.products-container:not(:has(.products)) {
+    background-image: linear-gradient(
+        100deg, #0c0c0c 30%, #1b1b1b 50%, #0c0c0c 70%
+    );
+    background-size: 200% 100%;
+    animation: bx-shimmer 1.6s linear infinite;
+    border-radius: 14px;
+}
+
+.featured-track:not(:has(.featured-slide)) {
+    min-height: 330px;
+    background-clip: content-box;
+}
+.brand-ad-slider:not(:has(.brand-ad-slide)) { min-height: 350px; border-radius: 0; }
+.products-container:not(:has(.products)) { min-height: 320px; }
+
+.status-message {
+    grid-column: 1 / -1;
+    padding: 48px 16px;
+    text-align: center;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    animation: bx-pulse 1.4s ease-in-out infinite;
+}
+
+/* ---------- ACCESSIBILITY ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+}
+
+/* =========================================================
+   PRODUCT PAGE + BRAND FOOTER (overrides more-info.css)
+========================================================= */
+
+/* smoother page entrance instead of the big zoom */
+body > *:not(header):not(#beelinx-splash) {
+    animation: bx-rise 0.6s var(--ease) both;
+}
+
+/* main photo */
+#product-image {
+    border-radius: 18px;
+    background: var(--bg-card);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--line);
+}
+
+.product-page #product-name { font-family: var(--serif); letter-spacing: 0.04em; }
+
+/* order button */
+.order-link {
+    background: #fff;
+    color: #000;
+    border: 1px solid #fff;
+    letter-spacing: 0.04em;
+    transition: transform 0.3s var(--ease), background 0.25s ease,
+                color 0.25s ease, box-shadow 0.3s ease;
+}
+.order-link:hover {
+    background: #000;
+    color: #fff;
+    opacity: 1;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.18);
+}
+.order-link:active { transform: scale(0.97); }
+
+/* more by brand */
+.more-products-header { border-top-color: var(--line); }
+.more-products-section h2 { font-family: var(--serif); letter-spacing: 0.06em; }
+
+.brand-socials { background-color: #000; }
+.brand-social-link { color: #bdbdbd; }
+.brand-social-link:hover { color: #fff; }
+
+.more-product-card:hover { transform: translateY(-6px); opacity: 1; }
+.more-product-card img { border-radius: 14px; background: var(--bg-card); }
+.more-product-brand { color: var(--muted) !important; }
+.more-product-price { color: var(--muted); }
+
+/* footer */
+.product-brand-website .website-link,
+.product-brand-website .website-link:visited,
+.product-brand-website .website-link:active,
+.product-brand-website .website-link:hover { color: #fff !important; }
+
+.product-brand-slogan { color: var(--text); }
+.product-brand-copyright { color: var(--muted); opacity: 1; }

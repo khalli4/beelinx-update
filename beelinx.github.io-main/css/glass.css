@@ -1,0 +1,497 @@
+/* =========================================================
+   BEELINX GLASS
+   Design tokens + the floating interface layer
+   (navbar, sidebar shell, search bar, catalogue grid).
+
+   Load this stylesheet LAST on every page.
+   Glass is used on floating controls only: navbar, sidebar,
+   search bar, login cards and small pills over photos.
+   Product cards and text-heavy content stay solid.
+========================================================= */
+
+/* ---------- 1. DESIGN TOKENS ---------- */
+
+:root {
+    /* layout */
+    --bx-nav-h: 50px;
+    --bx-safe-top: env(safe-area-inset-top, 0px);
+    --bx-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --bx-tap: 44px;
+
+    /* text */
+    --bx-ink: #fff;
+    --bx-ink-2: #c4c4c8;
+    --bx-ink-3: #8e8e93;
+
+    /* glass surfaces */
+    --bx-glass: rgba(12, 12, 14, 0.74);
+    --bx-glass-solid: rgba(12, 12, 14, 0.97);
+    --bx-glass-raised: linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.04) 100%
+    );
+    --bx-field: rgba(0, 0, 0, 0.38);
+    --bx-blur: blur(18px) saturate(150%);
+
+    /* edges */
+    --bx-line: rgba(255, 255, 255, 0.16);
+    --bx-line-soft: rgba(255, 255, 255, 0.1);
+    --bx-line-strong: rgba(255, 255, 255, 0.55);
+    --bx-hilite: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+
+    /* shape + depth */
+    --bx-r-sm: 10px;
+    --bx-r-md: 14px;
+    --bx-r-lg: 20px;
+    --bx-r-xl: 24px;
+    --bx-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+    /* motion */
+    --bx-fast: 0.18s;
+    --bx-med: 0.38s;
+    --bx-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* focus */
+    --bx-focus: 0 0 0 2px #000, 0 0 0 4px #fff;
+}
+
+/* a little lighter blur on phones: cheaper to render */
+@media (max-width: 768px) {
+    :root { --bx-blur: blur(14px) saturate(140%); }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* keep the page from shifting when the scrollbar appears/disappears */
+html { scrollbar-gutter: stable; }
+
+/* only pages that have the fixed navbar need the top offset
+   (the login page has none) */
+body:has(> header .navbar) {
+    padding-top: calc(var(--bx-nav-h) + var(--bx-safe-top));
+}
+
+/* ---------- 2. NAVBAR ---------- */
+
+.navbar {
+    height: calc(var(--bx-nav-h) + var(--bx-safe-top));
+    padding: var(--bx-safe-top)
+             max(8px, env(safe-area-inset-right))
+             0
+             max(8px, env(safe-area-inset-left));
+    background: var(--bx-glass);
+    -webkit-backdrop-filter: var(--bx-blur);
+    backdrop-filter: var(--bx-blur);
+    border-bottom: 1px solid var(--bx-line);
+    box-shadow: var(--bx-hilite), 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+
+.hamburger,
+.search-btn {
+    display: grid;
+    place-items: center;
+    width: var(--bx-tap);
+    height: var(--bx-tap);
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--bx-ink);
+    cursor: pointer;
+    transition: background-color var(--bx-fast) ease;
+}
+
+.hamburger:hover,
+.search-btn:hover {
+    opacity: 1;
+    transform: none;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger:active,
+.search-btn:active { background-color: rgba(255, 255, 255, 0.18); }
+
+.hamburger:focus-visible,
+.search-btn:focus-visible,
+.close-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--bx-focus);
+}
+
+.search-container {
+    margin: 0 0 0 auto;
+}
+
+.search-container label {
+    display: block;
+    line-height: 0;
+}
+
+.logo-img { height: 40px; }
+.logo-img:hover { opacity: 1; }
+
+/* ---------- 3. SEARCH BAR ---------- */
+
+.search-input {
+    top: calc(var(--bx-nav-h) + var(--bx-safe-top) + 8px);
+    left: max(12px, calc(50% - 280px));
+    max-width: calc(100vw - 24px);
+    height: 48px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background-color: rgba(16, 16, 18, 0.8);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='.6' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 16px center;
+    -webkit-backdrop-filter: var(--bx-blur);
+    backdrop-filter: var(--bx-blur);
+    box-shadow: var(--bx-hilite), var(--bx-shadow);
+    color: var(--bx-ink);
+    font-size: 16px; /* 16px stops iOS from zooming on focus */
+    transition:
+        width 0.4s var(--bx-ease),
+        padding 0.4s var(--bx-ease),
+        border-color var(--bx-med) ease,
+        opacity var(--bx-med) ease,
+        visibility 0s linear 0.4s;
+}
+
+.search-input.search-open {
+    width: min(560px, calc(100vw - 24px));
+    padding: 0 18px 0 46px;
+    border-width: 1px;
+    border-color: var(--bx-line);
+    transition:
+        width 0.4s var(--bx-ease),
+        padding 0.4s var(--bx-ease),
+        border-color var(--bx-med) ease,
+        opacity var(--bx-med) ease,
+        visibility 0s;
+}
+
+.search-input::placeholder { color: rgba(255, 255, 255, 0.55); }
+
+.search-input:focus,
+.search-input:focus-visible {
+    outline: none;
+    border-color: var(--bx-line-strong);
+    box-shadow:
+        var(--bx-hilite),
+        0 0 0 3px rgba(255, 255, 255, 0.14),
+        var(--bx-shadow);
+}
+
+.search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+/* push the hero down so the open bar does not cover it */
+body:has(.search-input.search-open) .featured-section-container {
+    margin-top: 60px;
+}
+
+/* ---------- 4. SIDEBAR ---------- */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(320px, 86vw);
+    height: 100vh;
+    height: 100dvh;
+    padding: calc(var(--bx-safe-top) + 10px)
+             0
+             calc(var(--bx-safe-bottom) + 28px)
+             env(safe-area-inset-left, 0px);
+
+    background: var(--bx-glass);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    border-right: 1px solid var(--bx-line);
+    box-shadow: var(--bx-hilite), 24px 0 60px rgba(0, 0, 0, 0.5);
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    /* closed: off-screen AND hidden, so keyboard focus can't reach it */
+    left: 0;
+    transform: translate3d(-104%, 0, 0);
+    visibility: hidden;
+    transition:
+        transform var(--bx-med) var(--bx-ease),
+        visibility 0s linear var(--bx-med);
+    z-index: 1001;
+}
+
+.side-menu.active {
+    left: 0;
+    transform: none;
+    visibility: visible;
+    transition:
+        transform var(--bx-med) var(--bx-ease),
+        visibility 0s;
+}
+
+.close-btn {
+    position: sticky;
+    top: calc(var(--bx-safe-top) + 10px);
+    left: auto;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: var(--bx-tap);
+    height: var(--bx-tap);
+    margin: 0 12px 6px auto;
+    border: 1px solid var(--bx-line-soft);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 20px;
+    color: var(--bx-ink);
+    cursor: pointer;
+    transition: background-color var(--bx-fast) ease;
+}
+
+.close-btn:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.side-menu > a {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    margin: 2px 12px;
+    padding: 0 16px;
+    border-radius: var(--bx-r-md);
+    font-size: 1.15rem;
+    color: var(--bx-ink);
+    text-decoration: none;
+    transition: background-color var(--bx-fast) ease;
+}
+
+.side-menu > a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    padding-left: 16px;
+    opacity: 1;
+}
+
+.side-menu > a:active { background: rgba(255, 255, 255, 0.14); }
+
+.side-menu > a:focus-visible {
+    outline: none;
+    box-shadow: var(--bx-focus);
+}
+
+/* dim the page behind the open sidebar; tapping it closes the menu */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--bx-med) ease;
+}
+
+html.bx-menu-open body::after {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* background scroll lock (main.js stores and restores the scroll position) */
+body.bx-locked {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ---------- 5. CATALOGUE GRID ---------- */
+
+/* column count is the single source of truth: home-products.js reads
+   it, so each row stays one brand at every width */
+
+.products-container {
+    width: calc(100% - 24px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 12px;
+}
+
+@media (min-width: 480px) {
+    .products-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .products-container {
+        width: 95%;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 26px 18px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .products-container { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1280px) {
+    .products-container {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 28px 22px;
+    }
+}
+
+.products .clothe-text {
+    margin-top: 10px;
+    font-size: clamp(0.8rem, 3.3vw, 0.95rem);
+    line-height: 1.35;
+    color: var(--bx-ink);
+}
+
+.products .price {
+    padding-top: 4px;
+    font-size: 0.85rem;
+    color: #d2d2d6;
+}
+
+/* bigger tap area for the brand link without changing the layout */
+.products .brand-page-link {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: -4px -8px 0;
+    font-size: 0.78rem;
+    color: var(--bx-ink-2);
+}
+
+/* pointer devices: restrained lift + ring */
+@media (hover: hover) and (pointer: fine) {
+    .products:hover { transform: translateY(-4px); }
+
+    .products:hover .clothe-image,
+    .products:hover img { transform: scale(1.04); }
+
+    .products:hover > a:first-child {
+        box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.3),
+            0 14px 32px rgba(255, 255, 255, 0.08);
+    }
+}
+
+/* touch devices: no sticky "hover" state left behind after a tap */
+@media (hover: none) {
+    .products:hover,
+    .brand-section:hover,
+    .more-product-card:hover { transform: none; }
+
+    .products:hover .clothe-image,
+    .products:hover img,
+    .clothe-image:hover { transform: none; opacity: 1; }
+
+    .products:hover > a:first-child { box-shadow: none; }
+}
+
+/* ---------- 6. PRODUCT PAGE ---------- */
+
+/* small glass pill on the main photo: the photo is a link to the
+   full-size image, this makes that visible without hovering */
+#product-image-link { position: relative; }
+
+#product-image-link::after {
+    content: "\f065";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    color: var(--bx-ink);
+    background: rgba(12, 12, 14, 0.55);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    backdrop-filter: blur(10px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* "More by this brand" follows the same column steps as the catalogue */
+.more-products-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 12px;
+}
+
+@media (min-width: 480px) {
+    .more-products-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .more-products-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 26px 18px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .more-products-container { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1280px) {
+    .more-products-container {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 28px 22px;
+    }
+}
+
+.more-product-name,
+.more-product-price { font-size: 0.8rem; }
+
+/* ---------- 7. FALLBACKS + PREFERENCES ---------- */
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .navbar,
+    .side-menu { background: var(--bx-glass-solid); }
+    .search-input { background-color: var(--bx-glass-solid); }
+    #product-image-link::after { background: rgba(12, 12, 14, 0.85); }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .navbar,
+    .side-menu {
+        background: var(--bx-glass-solid);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+    .search-input {
+        background-color: var(--bx-glass-solid);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .side-menu,
+    .search-input,
+    body::after { transition-duration: 0.01ms !important; }
+}

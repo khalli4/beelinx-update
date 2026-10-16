@@ -1,0 +1,119 @@
+/* =========================================================
+   BEELINX POLISH: product tiles, socials, product page
+   Load LAST on every page
+========================================================= */
+
+:root { --tile: #ececec; }
+
+/* ---------- PRODUCT TILES (grid + more by brand) ---------- */
+
+.products > a:first-child,
+.more-product-card > a:first-child {
+    display: block;
+    overflow: hidden;
+    background: var(--tile);
+    border-radius: 16px;
+    transition: box-shadow 0.4s ease;
+}
+
+.products-container .products img,
+.more-product-card img {
+    object-fit: contain;
+    padding: 7%;
+    background: transparent;
+    mix-blend-mode: multiply;
+    border-radius: 0;
+}
+
+.products-container .products:hover img,
+.more-product-card:hover img { box-shadow: none; }
+
+.products:hover > a:first-child,
+.more-product-card:hover > a:first-child {
+    box-shadow: 0 16px 36px rgba(255, 255, 255, 0.14);
+}
+
+.more-product-card:hover { opacity: 1; transform: translateY(-6px); }
+
+/* ---------- MAIN PRODUCT PHOTO ---------- */
+
+#product-image-link {
+    display: block;
+    padding: 20px;
+    background: var(--tile);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+#product-image {
+    max-width: 100%;
+    background: transparent;
+    mix-blend-mode: multiply;
+    box-shadow: none;
+    border-radius: 12px;
+}
+
+/* ---------- SOCIAL ICONS ---------- */
+
+.brand-socials {
+    top: -19px;
+    gap: 12px;
+    padding: 0 18px;
+    background: #000;
+}
+
+.brand-social-link {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    color: #ddd;
+    background: #0d0d0d;
+    border: 1px solid #333;
+    border-radius: 50%;
+    transition: transform 0.3s var(--ease), background 0.25s ease,
+                color 0.25s ease, border-color 0.25s ease;
+}
+
+.brand-social-link:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+    .brand-socials { top: -16px; gap: 10px; padding: 0 12px; }
+    .brand-social-link { width: 32px; height: 32px; font-size: 14px; }
+}
+
+/* ---------- PRODUCT PAGE DETAILS ---------- */
+
+.product-page #product-name { font-family: var(--serif); letter-spacing: 0.04em; }
+
+.order-link {
+    background: #fff;
+    color: #000;
+    border: 1px solid #fff;
+    letter-spacing: 0.04em;
+    transition: transform 0.3s var(--ease), background 0.25s ease,
+                color 0.25s ease, box-shadow 0.3s ease;
+}
+.order-link:hover {
+    background: #000;
+    color: #fff;
+    opacity: 1;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.18);
+}
+
+.more-products-header { border-top-color: var(--line); }
+.more-products-section h2 { font-family: var(--serif); letter-spacing: 0.06em; }
+.more-product-brand,
+.more-product-price { color: var(--muted) !important; }
+
+.product-brand-website .website-link,
+.product-brand-website .website-link:visited,
+.product-brand-website .website-link:active,
+.product-brand-website .website-link:hover { color: #fff !important; }
+.product-brand-copyright { color: var(--muted); opacity: 1; }

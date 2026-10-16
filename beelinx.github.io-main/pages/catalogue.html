@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="keywords" 
+content="fashion catalogue, clothing catalogue, clothing brands, 
+fashion brands, Nigerian fashion, African fashion, streetwear, 
+fashion products, Beelinx">
+
+<meta name="description" 
+content="Browse the Beelinx fashion catalogue to discover clothing 
+brands, products, and styles from different brands all in one place.">
+
+<title>Beelinx Catalogue | Discover Fashion & Brands</title>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet"
+      href="../css/styles.css">
+      <link rel="stylesheet" href="../css/dark-premium.css">
+<link rel="stylesheet" href="../css/premium-motion.css">
+<link rel="stylesheet" href="../css/polish.css">
+
+
+<link rel="stylesheet" href="../css/sidebar-auth.css">
+<link rel="stylesheet" href="../css/glass.css">
+</head>
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================== -->
+
+<header>
+
+    <nav class="navbar">
+
+        <!-- Hamburger -->
+
+        <div class="hamburger"
+             onclick="toggleMenu()">
+
+            <i class="fas fa-bars"></i>
+
+        </div>
+
+
+        <!-- Logo -->
+
+        <div class="nav-center">
+
+            <a href="index.html"
+               class="logo-link">
+
+                <img src="../beelinx_logo.png"
+                     alt="Beelinx Logo"
+                     class="logo-img">
+
+            </a>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <div class="search-container">
+
+            <input type="text"
+                   class="search-input"
+                   id="searchInput"
+                   placeholder="Search products and brands"
+                   onkeyup="searchFunction()">
+
+            <label for="searchInput">
+
+                <i class="fas fa-search search-btn"></i>
+
+            </label>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Side Menu -->
+
+    <div id="sideMenu"
+         class="side-menu">
+
+        <div class="close-btn"
+             onclick="closeMenu()">
+
+            <i class="fas fa-times"></i>
+
+        </div>
+
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="catalogue.html">
+            Catalogue
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     CATALOGUE
+========================================== -->
+
+<h1>
+    Catalogue
+</h1>
+
+
+<!-- Brands will be generated automatically -->
+
+<div id="brand-section-container"
+     class="brand-section-container">
+
+</div>
+
+
+<!-- =========================================
+     COPYRIGHT
+========================================== -->
+
+<div class="copyrights-gen">
+
+    <p>
+        © 2026 Beelinx — Fashion Worth Discovering
+    </p>
+
+</div>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================== -->
+
+<script src="../js/main.js"></script>
+
+<script src="../js/api.js"></script>
+
+
+<script>
+
+    /* =========================================
+       GENERATE BRAND CATALOGUE (from the API)
+    ========================================= */
+
+    async function initCatalogue() {
+
+        const brandContainer =
+            document.getElementById("brand-section-container");
+
+        if (!brandContainer) return;
+
+        showMessage(brandContainer, "Loading...");
+
+        let brands;
+
+        try {
+            brands = await api("/brands");
+        } catch (err) {
+            console.error("Beelinx: could not load brands.", err);
+            showMessage(brandContainer, "Could not load brands. Please refresh the page.");
+            return;
+        }
+
+        brandContainer.replaceChildren();
+
+        brands.forEach((brand) => {
+
+            const brandSection = document.createElement("div");
+            brandSection.className = "brand-section";
+
+            const brandLink = document.createElement("a");
+            brandLink.href =
+                `brandpage-template.html?brand=${encodeURIComponent(brand.name)}`;
+
+            const logo = document.createElement("img");
+            logo.className = "brand-logo";
+            logo.src = brand.logo || "";
+            logo.alt = `${brand.name} Brand Logo`;
+            logo.loading = "lazy";
+
+            brandLink.appendChild(logo);
+
+            const name = document.createElement("strong");
+            name.textContent = brand.name;
+
+            const logoAlign = document.createElement("p");
+            logoAlign.className = "logo-align";
+            logoAlign.append(brandLink, document.createElement("br"), name);
+
+            brandSection.appendChild(logoAlign);
+            brandContainer.appendChild(brandSection);
+
+        });
+
+    }
+
+    initCatalogue();
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../js/sidebar-auth.js"></script>
+</body>
+
+</html>

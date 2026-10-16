@@ -1,0 +1,209 @@
+/* =========================================================
+   SIDEBAR LOGIN CARD
+   A raised glass card inside the sidebar. Buttons that
+   matter (Google, Log in) stay solid white with dark text.
+   Uses the tokens defined in glass.css.
+========================================================= */
+
+#sideMenu { overflow-y: auto; }
+
+#sideMenu .side-auth {
+    margin: 18px 14px 12px;
+    padding: 18px 16px;
+    background: var(--bx-glass-raised);
+    color: var(--bx-ink);
+    border: 1px solid var(--bx-line-soft);
+    border-radius: var(--bx-r-lg);
+    box-shadow: var(--bx-hilite), 0 8px 24px rgba(0, 0, 0, 0.25);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    text-align: left;
+    transition: border-color var(--bx-med) ease;
+}
+
+#sideMenu .side-auth:hover { border-color: var(--bx-line); }
+
+#sideMenu .side-auth [hidden] { display: none !important; }
+
+#sideMenu .side-auth h3 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--bx-ink);
+}
+
+#sideMenu .side-auth-msg {
+    margin: 0 0 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    background: #3a1414;
+    color: #ffb4b4;
+}
+#sideMenu .side-auth-msg.success { background: #12301c; color: #a8f0c0; }
+
+/* ---------- GOOGLE + LOG IN: solid white ---------- */
+
+#sideMenu .side-auth-google,
+#sideMenu .side-auth-submit {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: var(--bx-r-md);
+    background: #fff;
+    color: #0a0a0a;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--bx-fast) ease,
+                transform var(--bx-fast) ease,
+                box-shadow var(--bx-fast) ease;
+}
+
+#sideMenu .side-auth-google { font-size: 0.85rem; white-space: nowrap; }
+
+#sideMenu .side-auth-google:hover,
+#sideMenu .side-auth-submit:hover {
+    background: #ececec;
+    box-shadow: 0 6px 18px rgba(255, 255, 255, 0.14);
+}
+
+#sideMenu .side-auth-google:active,
+#sideMenu .side-auth-submit:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+
+#sideMenu .side-auth-submit { margin-top: 4px; font-weight: 700; }
+#sideMenu .side-auth-submit:disabled { opacity: 0.6; cursor: wait; transform: none; }
+
+#sideMenu .side-auth-google:focus-visible,
+#sideMenu .side-auth-submit:focus-visible,
+#sideMenu .side-auth input:focus-visible,
+#sideMenu .side-auth a:focus-visible,
+#sideMenu .side-auth-logout:focus-visible {
+    outline: none;
+    box-shadow: var(--bx-focus);
+}
+
+#sideMenu .side-auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+    color: var(--bx-ink-3);
+    font-size: 0.8rem;
+}
+#sideMenu .side-auth-divider::before,
+#sideMenu .side-auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--bx-line-soft);
+}
+
+/* ---------- FORM ---------- */
+
+#sideMenu .side-auth form { display: flex; flex-direction: column; gap: 8px; }
+
+#sideMenu .side-auth input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 14px;
+    border: 1px solid var(--bx-line-soft);
+    border-radius: var(--bx-r-md);
+    background: var(--bx-field);
+    color: var(--bx-ink);
+    font: inherit;
+    font-size: 16px; /* 16px stops iOS from zooming when a field is focused */
+    transition: border-color var(--bx-fast) ease,
+                background-color var(--bx-fast) ease,
+                box-shadow var(--bx-fast) ease;
+}
+
+#sideMenu .side-auth input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+#sideMenu .side-auth input:hover { border-color: var(--bx-line); }
+
+#sideMenu .side-auth input:focus {
+    outline: none;
+    border-color: var(--bx-line-strong);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+/* ---------- LINKS ---------- */
+
+#sideMenu .side-auth-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+#sideMenu .side-auth a.side-auth-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin: 0;
+    padding: 0 4px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--bx-ink-2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background: none;
+    transition: color var(--bx-fast) ease;
+}
+#sideMenu .side-auth a.side-auth-link:hover { color: var(--bx-ink); background: none; }
+
+#sideMenu .side-auth a.side-auth-more,
+#sideMenu .side-auth-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 46px;
+    margin: 6px 0 0;
+    padding: 0 12px;
+    border: 1px solid var(--bx-line);
+    border-radius: var(--bx-r-md);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--bx-ink);
+    font: inherit;
+    font-size: 0.88rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color var(--bx-fast) ease,
+                background-color var(--bx-fast) ease,
+                transform var(--bx-fast) ease;
+}
+
+#sideMenu .side-auth a.side-auth-more:hover,
+#sideMenu .side-auth-logout:hover {
+    border-color: var(--bx-line-strong);
+    background: rgba(255, 255, 255, 0.09);
+}
+#sideMenu .side-auth a.side-auth-more:active,
+#sideMenu .side-auth-logout:active { transform: scale(0.98); }
+
+/* ---------- LOGGED IN ---------- */
+
+#sideMenu .side-auth-user {
+    margin: 0 0 12px;
+    color: var(--bx-ink-2);
+    font-size: 0.88rem;
+    overflow-wrap: anywhere;
+}
+#sideMenu .side-auth-logout { margin-top: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+    #sideMenu .side-auth * { transition: none !important; }
+    #sideMenu .side-auth *:active { transform: none !important; }
+}

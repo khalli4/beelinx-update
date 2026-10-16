@@ -1,0 +1,790 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding-top: 50px;
+    overflow-x: hidden;
+}
+
+body.glightbox-open {
+    position: fixed;
+    width: 100%;
+}
+
+
+/* =========================================
+   NAVBAR
+   MATCHES HOMEPAGE NAVBAR
+========================================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 1000;
+}
+
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2em;
+}
+
+nav a {
+    color: rgb(255, 255, 255);
+    font-weight: 300;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.hamburger {
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+}
+
+.hamburger:hover {
+    opacity: 0.7;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: black;
+    padding-top: 80px;
+    transition: 0.3s ease;
+    z-index: 1001;
+}
+
+.side-menu a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+}
+
+.side-menu a:hover {
+    background: #111;
+    opacity: 0.7;
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    opacity: 0.7;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.logo-img:hover {
+    opacity: 0.7;
+}
+
+.search-container {
+    position: relative;
+    margin-left: auto;
+    margin-right: 4px;
+    margin-top: 14px;
+}
+
+/* =========================================================
+     SEARCH & SEARCH BAR ANIMATION
+========================================================= */
+
+.search-container {
+position: relative;
+margin-left: auto;
+margin-right: 4px;
+margin-top: 14px;
+}
+
+.search-input {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        box-sizing: border-box;
+        width: 0;
+        height: 40px;
+        padding: 0;
+        border: 0 solid #000000;
+        border-radius: 20px;
+        background: #ffffff;
+        color: #000000;
+        font-size: 16px;
+        z-index: 1001;
+        opacity: 1;
+        visibility: hidden;
+        overflow: hidden;
+        transition:
+            width 0.4s ease,
+            padding 0.4s ease,
+            border-width 0.4s ease,
+            opacity 0.4s ease,
+            visibility 0s linear 0.4s;
+    }
+
+    .search-input.search-open {
+        width: 100%;
+        padding: 10px 15px;
+        border-width: 2px;
+        opacity: 1;
+        visibility: visible;
+        transition:
+            width 0.4s ease,
+            padding 0.4s ease,
+            border-width 0.4s ease,
+            opacity 0.4s ease,
+            visibility 0s;
+    }
+
+    body:has(.search-input.search-open) .featured-section-container {
+        margin-top: 45px;
+    }
+
+.search-btn {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.search-btn:hover {
+    opacity: 0.7;
+}
+
+
+/* =========================================
+   MAIN PRODUCT
+========================================= */
+
+.product-page {
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.product-page .clothe-image {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.product-page .clothe-text {
+    width: 100%;
+    text-align: center;
+}
+
+.product-page .brand-product-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+}
+
+.product-page .brand-product-logo:hover {
+    transition: transform 0.2s ease;
+    transform: scale(1.08);
+    opacity: 0.7;
+}
+
+.product-page #product-name {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.product-page .price {
+    color: grey;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.product-description {
+    text-align: center;
+    font-size: larger;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.order-link {
+    text-align: center;
+    display: inline-block;
+    color: white;
+    background-color: black;
+    border-radius: 30px;
+    padding: 12px 70px;
+    text-decoration: none;
+    margin-top: 12px;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.order-link:hover {
+    transform: translateY(-5px);
+    opacity: 0.8;
+}
+
+
+/* =========================================
+   MORE BY BRAND
+========================================= */
+
+.more-products-section {
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto 80px;
+    padding-top: 0;
+}
+
+
+/* =========================================
+   SOCIAL MEDIA + TITLE HEADER
+========================================= */
+
+.more-products-header {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding-top: 18px;
+    padding-bottom: 30px;
+    margin-bottom: 35px;
+}
+
+.brand-socials {
+    position: absolute;
+    left: 50%;
+    top: -20px;
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    padding: 0 15px;
+    background-color: white;
+
+    z-index: 2;
+}
+
+.brand-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: black;
+    text-decoration: none;
+
+    font-size: 20px;
+
+    width: 25px;
+    height: 25px;
+
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.brand-social-link:hover {
+    color: gray;
+    transform: translateY(-3px);
+}
+
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+.more-products-section h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0;
+}
+
+
+/* =========================================
+   SUGGESTION GRID
+========================================= */
+
+.more-products-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px;
+    width: 100%;
+}
+
+
+/* =========================================
+   SUGGESTION CARD
+========================================= */
+
+.more-product-card {
+    width: 100%;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.more-product-card:hover {
+    transform: translateY(-20px);
+    opacity: 0.7;
+}
+
+.more-product-brand {
+    display: inline-block;
+    font-size: smaller !important;
+    color: #777 !important;
+    margin-bottom: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-decoration 0.2s ease;
+}
+
+.more-product-brand:hover {
+    text-decoration: underline;
+}
+
+.more-product-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.more-product-info {
+    padding-top: 10px;
+}
+
+.more-product-name {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.more-product-price {
+    font-size: 13px;
+    color: #777;
+}
+
+.more-product-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================
+   PRODUCT BRAND FOOTER
+========================================= */
+
+.product-brand-website {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+.product-brand-website .website-link,
+.product-brand-website .website-link:visited,
+.product-brand-website .website-link:active {
+    text-decoration: none !important;
+    text-align: center;
+    font-style: italic;
+    color: #000000 !important;
+    padding-bottom: 20px;
+    font-size: inherit;
+    transition: font-size 0.2s ease;
+}
+
+.product-brand-website .website-link:hover {
+    font-size: larger !important;
+    color: #000000 !important;
+}
+
+.product-brand-slogan {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: lighter;
+    opacity: 0.65;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.product-brand-copyright {
+    font-size: 12px;
+    font-style: italic;
+    color: #000000;
+    opacity: 0.7;
+    text-align: center;
+}
+
+/* =========================================
+   ==== BEELINX PAGE TRANSITION ====
+========================================= */
+
+@keyframes beelinxPageExpand {
+    from {
+        transform: scale(0.45);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+body > *:not(header):not(#beelinx-splash) {
+    animation: beelinxPageExpand 0.4s ease-out both;
+    transform-origin: center center;
+}
+
+/* =========================================
+   TABLET / MOBILE
+   KEEP MAIN PRODUCT HORIZONTAL
+========================================= */
+
+@media (max-width: 768px) {
+
+    .product-page {
+        width: 95%;
+        margin: 40px auto 80px;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .product-page .clothe-image {
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+    }
+
+    .product-page .clothe-text {
+        text-align: center;
+        width: 100%;
+    }
+
+    .product-page .brand-product-logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 12px;
+    }
+
+    .product-page #product-name {
+        font-size: 22px;
+        margin-bottom: 4px;
+    }
+
+    .product-page .price {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .product-description {
+        line-height: 1.35;
+        margin-bottom: 2px;
+    }
+
+    .product-page .order-link {
+        padding: 10px 30px;
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    .more-products-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .more-products-header {
+        margin-bottom: 30px;
+    }
+
+    .brand-socials {
+        gap: 13px;
+    }
+
+    .brand-social-link {
+        font-size: 18px;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+   STILL HORIZONTAL
+========================================= */
+
+@media (max-width: 600px) {
+
+    /* NAVBAR — MATCH HOMEPAGE */
+
+    .navbar {
+        padding: 10px 20px;
+        height: 50px;
+    }
+
+    .logo-img {
+        height: 40px;
+    }
+
+
+    /* =====================================
+       MAIN PRODUCT
+    ===================================== */
+
+    .product-page {
+        width: 96%;
+        margin: 25px auto 50px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .product-page .clothe-image {
+        width: 100%;
+        max-width: none;
+        height: auto;
+    }
+
+    .product-page .clothe-text {
+        text-align: center;
+        width: 100%;
+    }
+
+    .product-page .brand-product-logo {
+        width: 55px;
+        height: 55px;
+        margin: 0 auto 8px;
+    }
+
+    .product-page #product-name {
+        font-size: 16px;
+        line-height: 1.15;
+        margin-bottom: 3px;
+    }
+
+    .product-page .price {
+        font-size: 15px;
+        line-height: 1.2;
+        margin-bottom: 4px;
+    }
+
+    .product-description {
+        font-size: 13px;
+        line-height: 1.3;
+        margin-bottom: 0;
+    }
+
+    .product-page .order-link {
+        padding: 7px 18px;
+        font-size: 12px;
+        margin-top: 7px;
+    }
+
+
+    /* =====================================
+       MORE BY BRAND
+    ===================================== */
+
+    .more-products-section {
+        width: 94%;
+    }
+
+    .more-products-header {
+        padding-top: 15px;
+        margin-bottom: 25px;
+    }
+
+    .more-products-section h2 {
+        font-size: 22px;
+        margin: 0;
+    }
+
+    .more-products-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px 8px;
+    }
+
+    .brand-socials {
+        top: -18px;
+        gap: 12px;
+        padding: 0 12px;
+    }
+
+    .brand-social-link {
+        width: 22px;
+        height: 22px;
+        font-size: 17px;
+    }
+
+    .more-product-name {
+        font-size: 12px;
+    }
+
+    .more-product-price {
+        font-size: 11px;
+    }
+
+    .more-product-brand {
+        font-size: 10px;
+    }
+
+
+    /* =====================================
+       PRODUCT BRAND FOOTER
+    ===================================== */
+
+    .product-brand-website {
+        padding-top: 25px;
+        padding-bottom: 10px;
+    }
+
+    .product-brand-website .website-link,
+    .product-brand-website .website-link:visited,
+    .product-brand-website .website-link:active {
+        font-size: 11px;
+        color: #000000 !important;
+        text-decoration: none !important;
+    }
+
+    .product-brand-slogan {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .product-brand-copyright {
+        font-size: 8px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .product-page {
+        gap: 7px;
+        margin-top: 20px;
+    }
+
+    .product-page #product-name {
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    .product-page .price {
+        font-size: 13px;
+        margin-bottom: 3px;
+    }
+
+    .product-page .brand-product-logo {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 6px;
+    }
+
+    .product-description {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+    .product-page .order-link {
+        padding: 6px 14px;
+        font-size: 11px;
+        margin-top: 6px;
+    }
+
+    .more-products-container {
+        gap: 12px 8px;
+    }
+
+    .more-product-name {
+        font-size: 11px;
+    }
+
+    .more-product-price {
+        font-size: 10px;
+    }
+
+    .brand-socials {
+        top: -17px;
+        gap: 10px;
+    }
+
+    .brand-social-link {
+        font-size: 15px;
+    }
+
+    .product-brand-website {
+        padding-top: 20px;
+        padding-bottom: 8px;
+    }
+
+    .product-brand-website .website-link,
+    .product-brand-website .website-link:visited,
+    .product-brand-website .website-link:active {
+        font-size: 10px;
+        color: #000000 !important;
+        text-decoration: none !important;
+    }
+
+    .product-brand-slogan {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .product-brand-copyright {
+        font-size: 7px;
+    }
+}
